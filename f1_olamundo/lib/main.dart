@@ -11,9 +11,33 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends StatefulWidget {
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  int count = 0;
+
   _onClick() {
+    setState(() {
+      count++;
+    });
+
+    print(count);
     print('clicou!');
+  }
+
+  Widget getCounter(int c) {
+    return Center(
+        child: Text(
+      'Você clicou ${c} vezes',
+      style: TextStyle(
+        fontSize: 24,
+        fontWeight: FontWeight.bold,
+        color: Colors.white,
+      ),
+    ));
   }
 
   @override
@@ -25,7 +49,18 @@ class MyHomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text('Olá Mundo!'),
-            Text('Esse é meu primeiro app em Flutter')
+            SizedBox(
+              height: 20,
+            ),
+            GestureDetector(
+              onTap: _onClick,
+              child: Container(
+                  height: 300,
+                  width: 300,
+                  decoration:
+                      BoxDecoration(color: Colors.blue, shape: BoxShape.circle),
+                  child: getCounter(count)),
+            ),
           ],
         ),
       ),
@@ -33,6 +68,7 @@ class MyHomePage extends StatelessWidget {
         onPressed: _onClick,
         child: Icon(Icons.add),
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }
