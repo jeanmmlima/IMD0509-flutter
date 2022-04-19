@@ -5,6 +5,8 @@ import 'dart:math';
 import 'package:f2_todolist/models/tarefa.dart';
 import 'package:flutter/material.dart';
 
+import 'package:intl/intl.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -46,7 +48,10 @@ class _MyHomePageState extends State<MyHomePage> {
   List<Tarefa> _tarefas = [
     Tarefa(id: 't0', titulo: 'Estudar', data: DateTime.now()),
     Tarefa(id: 't1', titulo: 'Jogar', data: DateTime.now()),
-    Tarefa(id: 't2', titulo: 'Assistir', data: DateTime.now())
+    Tarefa(
+        id: 't2',
+        titulo: 'Assistir',
+        data: DateTime.now().subtract(Duration(days: 2)))
   ];
 
   @override
@@ -63,7 +68,14 @@ class _MyHomePageState extends State<MyHomePage> {
               controller: _tarefaController,
               decoration: InputDecoration(labelText: 'Tarefa'),
             ),
-            ElevatedButton(onPressed: _novaTarefa, child: Text('Confirmar')),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ElevatedButton(
+                  onPressed: _novaTarefa, child: Text('Confirmar')),
+            ),
+            SizedBox(
+              height: 20,
+            ),
             Column(
               children: <Widget>[
                 Container(
@@ -73,9 +85,34 @@ class _MyHomePageState extends State<MyHomePage> {
                     itemBuilder: (context, index) {
                       final tarefa = _tarefas[index];
                       return Card(
-                        margin:
-                            EdgeInsets.symmetric(vertical: 10, horizontal: 5),
-                        child: Text(tarefa.titulo),
+                        child: Row(
+                          children: [
+                            Container(
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                      width: 2,
+                                      color:
+                                          tarefa.data.day == DateTime.now().day
+                                              ? Theme.of(context).primaryColor
+                                              : Theme.of(context)
+                                                  .secondaryHeaderColor),
+                                ),
+                                margin: EdgeInsets.symmetric(
+                                  horizontal: 15,
+                                  vertical: 10,
+                                ),
+                                padding: EdgeInsets.all(10),
+                                child: Text(
+                                    DateFormat('d MMM y').format(tarefa.data),
+                                    style: TextStyle(
+                                        color: tarefa.data.day ==
+                                                DateTime.now().day
+                                            ? Theme.of(context).primaryColor
+                                            : Theme.of(context)
+                                                .secondaryHeaderColor))),
+                            Text(tarefa.titulo),
+                          ],
+                        ),
                       );
                     },
                   ),
