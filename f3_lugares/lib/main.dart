@@ -26,6 +26,8 @@ class MyApp extends StatelessWidget {
                 fontFamily: 'RobotoCondensed',
               ))),
       home: CountriesScreen(),
+      //initialRoute: '/',
+      routes: {'/country-places': (context) => CountryPlacesScreen()},
     );
   }
 }
