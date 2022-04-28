@@ -1,6 +1,8 @@
 import 'dart:ui';
 
 import 'package:f3_lugares/screens/countries_places_screen.dart';
+import 'package:f3_lugares/screens/place_detail_screen.dart';
+import 'package:f3_lugares/utils/app_routes.dart';
 import 'package:flutter/material.dart';
 
 import 'screens/countries_screen.dart';
@@ -25,9 +27,12 @@ class MyApp extends StatelessWidget {
                 fontSize: 20,
                 fontFamily: 'RobotoCondensed',
               ))),
-      home: CountriesScreen(),
-      //initialRoute: '/',
-      routes: {'/country-places': (context) => CountryPlacesScreen()},
+      initialRoute: '/',
+      routes: {
+        AppRoutes.HOME: (ctx) => CountriesScreen(),
+        AppRoutes.COUNTRY_PLACES: (ctx) => CountryPlacesScreen(),
+        AppRoutes.PLACES_DETAIL: (ctx) => PlaceDetailScreen(),
+      },
     );
   }
 }
