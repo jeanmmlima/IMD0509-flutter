@@ -5,13 +5,8 @@ import '../data/my_data.dart';
 class CountriesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-          centerTitle: true,
-          title: Text(
-            'Bora viajar?',
-          )),
-      body: GridView(
+    return Container(
+      child: GridView(
         padding: const EdgeInsets.all(25),
         gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
           maxCrossAxisExtent:
