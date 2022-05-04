@@ -64,6 +64,12 @@ class PlaceDetailScreen extends StatelessWidget {
           )
         ],
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.of(context).pop(place.titulo);
+        },
+        child: Icon(Icons.star),
+      ),
     );
   }
 }

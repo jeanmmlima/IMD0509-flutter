@@ -8,11 +8,15 @@ class PlaceItem extends StatelessWidget {
   const PlaceItem(this.place);
 
   void _selectPlace(BuildContext context) {
-    Navigator.of(context).pushNamed(
-      AppRoutes.PLACES_DETAIL,
-      arguments:
-          place, //passar um map com chave valor para passar mais de um argumento
-    );
+    Navigator.of(context)
+        .pushNamed(
+          AppRoutes.PLACES_DETAIL,
+          arguments:
+              place, //passar um map com chave valor para passar mais de um argumento
+        )
+        .then((value) => {
+              if (value == null) {} else {print(value)}
+            });
   }
 
   @override

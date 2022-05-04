@@ -1,5 +1,4 @@
-import 'dart:ui';
-
+import 'package:f3_lugares/models/place.dart';
 import 'package:f3_lugares/screens/countries_places_screen.dart';
 import 'package:f3_lugares/screens/place_detail_screen.dart';
 import 'package:f3_lugares/screens/settings_screen.dart';
