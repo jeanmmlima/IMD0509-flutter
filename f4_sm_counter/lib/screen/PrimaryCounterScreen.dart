@@ -1,4 +1,4 @@
-import 'package:f4_sm_counter/models/CounterModel.dart';
+import 'package:f4_sm_counter/model/CounterModel.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -13,9 +13,13 @@ class PrimaryCounterScreen extends StatelessWidget {
         child: Column(
           children: <Widget>[
             Text('Meu Contador Primário'),
-            Text(
-              'Contador: 0',
-              style: TextStyle(fontSize: 25),
+            Consumer<CounterModel>(
+              builder: (context, counter, child) {
+                return Text(
+                  'Contador: ${counter.getCount}',
+                  style: TextStyle(fontSize: 25),
+                );
+              },
             ),
             ElevatedButton(
                 onPressed: () {
@@ -26,7 +30,10 @@ class PrimaryCounterScreen extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          final contador = context.read<CounterModel>();
+          contador.add();
+        },
         child: Icon(Icons.add),
       ),
     );
