@@ -15,7 +15,16 @@ class ProductItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //PEGANDO CONTEUDO PELO PROVIDER
-    final product = Provider.of<Product>(context);
+    //
+    final product = Provider.of<Product>(
+      context,
+      listen: false,
+    );
+
+    //final product = context.watch<Product>();
+
+    var isFavorite =
+        context.select<Product, bool>((produto) => produto.isFavorite);
 
     return ClipRRect(
       //corta de forma arredondada o elemento de acordo com o BorderRaius
@@ -40,8 +49,11 @@ class ProductItem extends StatelessWidget {
             },
             //icon: Icon(Icons.favorite),
             //pegando icone se for favorito ou não
-            icon: Icon(
-                product.isFavorite ? Icons.favorite : Icons.favorite_border),
+            icon: Consumer<Product>(
+              builder: (context, product, child) => Icon(
+                  product.isFavorite ? Icons.favorite : Icons.favorite_border),
+            ),
+            //isFavorite ? Icons.favorite : Icons.favorite_border),
             color: Theme.of(context).colorScheme.secondary,
           ),
           title: Text(
