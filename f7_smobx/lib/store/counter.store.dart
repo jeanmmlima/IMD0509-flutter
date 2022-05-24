@@ -12,4 +12,6 @@ abstract class _Counter with Store {
   incrementar() {
     contador++;
   }
+
+  int get getCount => contador;
 }
