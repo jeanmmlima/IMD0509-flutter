@@ -15,3 +15,12 @@ x86/
 *.[Cc]ache
 # but keep track of directories ending in .cache
 !*.[Cc]ache/
+
+/android/
+/ios/
+/test/
+/web/
+/windows/
+.metadata
+.packages
+pubspec.lock
