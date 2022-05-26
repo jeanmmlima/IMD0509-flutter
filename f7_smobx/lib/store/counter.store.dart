@@ -6,12 +6,10 @@ class Counter = _Counter with _$Counter;
 
 abstract class _Counter with Store {
   @observable
-  int contador = 0;
+  int count = 0;
 
   @action
-  incrementar() {
-    contador++;
+  increment() {
+    count++;
   }
-
-  int get getCount => contador;
 }

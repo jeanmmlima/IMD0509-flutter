@@ -1,1 +1,13 @@
-
+*/android/
+*/ios/
+*/test/
+*/web/
+*/windows/
+*/.metadata
+*/.packages
+*/pubspec.lock
+*/*.iml
+*/build
+*/.idea
+*/.dart_tool
+*/test/

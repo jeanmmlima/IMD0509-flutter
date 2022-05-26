@@ -9,18 +9,18 @@ part of 'counter.store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$Counter on _Counter, Store {
-  late final _$contadorAtom = Atom(name: '_Counter.contador', context: context);
+  late final _$countAtom = Atom(name: '_Counter.count', context: context);
 
   @override
-  int get contador {
-    _$contadorAtom.reportRead();
-    return super.contador;
+  int get count {
+    _$countAtom.reportRead();
+    return super.count;
   }
 
   @override
-  set contador(int value) {
-    _$contadorAtom.reportWrite(value, super.contador, () {
-      super.contador = value;
+  set count(int value) {
+    _$countAtom.reportWrite(value, super.count, () {
+      super.count = value;
     });
   }
 
@@ -28,11 +28,11 @@ mixin _$Counter on _Counter, Store {
       ActionController(name: '_Counter', context: context);
 
   @override
-  dynamic incrementar() {
+  dynamic increment() {
     final _$actionInfo =
-        _$_CounterActionController.startAction(name: '_Counter.incrementar');
+        _$_CounterActionController.startAction(name: '_Counter.increment');
     try {
-      return super.incrementar();
+      return super.increment();
     } finally {
       _$_CounterActionController.endAction(_$actionInfo);
     }
@@ -41,7 +41,7 @@ mixin _$Counter on _Counter, Store {
   @override
   String toString() {
     return '''
-contador: ${contador}
+count: ${count}
     ''';
   }
 }
