@@ -3,6 +3,7 @@ import 'package:f6_ecommerce/components/product_item.dart';
 import 'package:f6_ecommerce/data/dummy_data.dart';
 import 'package:f6_ecommerce/model/product.dart';
 import 'package:f6_ecommerce/model/product_list.dart';
+import 'package:f6_ecommerce/utils/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -28,6 +29,13 @@ class _ProductsOverviewPageState extends State<ProductsOverviewPage> {
       appBar: AppBar(
         title: Text('Minha Loja'),
         actions: [
+          IconButton(
+              onPressed: () {
+                Navigator.of(context).pushNamed(
+                  AppRoutes.PRODUCT_FORM,
+                );
+              },
+              icon: Icon(Icons.add)),
           PopupMenuButton(
             icon: Icon(Icons.more_vert),
             itemBuilder: (_) => [

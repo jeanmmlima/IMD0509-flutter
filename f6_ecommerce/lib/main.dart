@@ -1,5 +1,6 @@
 import 'package:f6_ecommerce/model/product_list.dart';
 import 'package:f6_ecommerce/pages/product_detail_page.dart';
+import 'package:f6_ecommerce/pages/product_form_page.dart';
 import 'package:f6_ecommerce/pages/products_overview_page.dart';
 import 'package:f6_ecommerce/utils/app_routes.dart';
 import 'package:flutter/material.dart';
@@ -27,6 +28,7 @@ class MyApp extends StatelessWidget {
         home: ProductsOverviewPage(),
         routes: {
           AppRoutes.PRODUCT_DETAIL: (ctx) => ProductDetailPage(),
+          AppRoutes.PRODUCT_FORM: (context) => ProductFormPage(),
         },
         debugShowCheckedModeBanner: false,
       ),
