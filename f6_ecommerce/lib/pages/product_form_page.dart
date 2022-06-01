@@ -80,9 +80,9 @@ class _ProductFormPageState extends State<ProductFormPage> {
     Provider.of<ProductList>(
       context,
       listen: false,
-    ).saveProduct(_formData);
-
-    Navigator.of(context).pop();
+    ).saveProduct(_formData).then((value) {
+      Navigator.of(context).pop();
+    });
   }
 
   @override

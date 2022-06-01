@@ -7,7 +7,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 
 class ProductList with ChangeNotifier {
-  final _baseUrl = 'https://teste-bd-85763-default-rtdb.firebaseio.com';
+  final _baseUrl = 'https://teste-db-d3d87-default-rtdb.firebaseio.com';
   //img https://st.depositphotos.com/1000459/2436/i/950/depositphotos_24366251-stock-photo-soccer-ball.jpg
 
   List<Product> _items = dummyProducts;
@@ -31,8 +31,8 @@ class ProductList with ChangeNotifier {
     notifyListeners();
   }
 
-  void addProduct(Product product) {
-    final future = http.post(Uri.parse('$_baseUrl/product-teste.json'),
+  Future<void> addProduct(Product product) {
+    final future = http.post(Uri.parse('$_baseUrl/products.json'),
         body: jsonEncode({
           "title": product.title,
           "description": product.description,
@@ -40,11 +40,23 @@ class ProductList with ChangeNotifier {
           "imageUrl": product.imageUrl,
           "isFavorite": product.isFavorite,
         }));
-    _items.add(product);
-    notifyListeners();
+    return future.then((response) {
+      //print('espera a requisição acontecer');
+      print(jsonDecode(response.body));
+      final id = jsonDecode(response.body)['name'];
+      print(response.statusCode);
+      _items.add(Product(
+          id: id,
+          title: product.title,
+          description: product.description,
+          price: product.price,
+          imageUrl: product.imageUrl));
+      notifyListeners();
+    });
+    // print('executa em sequencia');
   }
 
-  void saveProduct(Map<String, Object> data) {
+  Future<void> saveProduct(Map<String, Object> data) {
     bool hasId = data['id'] != null;
 
     final product = Product(
@@ -56,19 +68,20 @@ class ProductList with ChangeNotifier {
     );
 
     if (hasId) {
-      updateProduct(product);
+      return updateProduct(product);
     } else {
-      addProduct(product);
+      return addProduct(product);
     }
   }
 
-  void updateProduct(Product product) {
+  Future<void> updateProduct(Product product) {
     int index = _items.indexWhere((p) => p.id == product.id);
 
     if (index >= 0) {
       _items[index] = product;
       notifyListeners();
     }
+    return Future.value();
   }
 
   void removeProduct(Product product) {
