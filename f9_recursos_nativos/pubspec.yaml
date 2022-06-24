@@ -43,6 +43,8 @@ dev_dependencies:
   path_provider: ^2.0.11
   path: ^1.8.0
   sqflite: ^2.0.2+1
+  location: ^4.4.0
+  google_maps_flutter: ^2.1.8
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

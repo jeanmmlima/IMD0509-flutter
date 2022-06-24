@@ -38,7 +38,7 @@ class GreatPlaces with ChangeNotifier {
     return _items[index];
   }
 
-  void addPlace(String title, File image) {
+  void addPlace(String title, File image, ) {
     final newPlace = Place(
         id: Random().nextDouble().toString(),
         title: title,
