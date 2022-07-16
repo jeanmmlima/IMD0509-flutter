@@ -1,10 +1,12 @@
 import 'package:f10_aut_and_push/core/models/chat_user.dart';
 import 'package:f10_aut_and_push/core/services/auth/auth_service.dart';
+import 'package:f10_aut_and_push/core/services/notification/chat_notification_service.dart';
 import 'package:f10_aut_and_push/pages/auth_page.dart';
 import 'package:f10_aut_and_push/pages/chat_page.dart';
 import 'package:f10_aut_and_push/pages/loading_page.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:provider/provider.dart';
 
 class AuthOrAppPage extends StatelessWidget {
   const AuthOrAppPage({Key? key}) : super(key: key);
@@ -12,6 +14,10 @@ class AuthOrAppPage extends StatelessWidget {
   /* APP FIREBASE */
   Future<void> init(BuildContext context) async {
     await Firebase.initializeApp();
+    await Provider.of<ChatNotificationService>(
+      context,
+      listen: false,
+    ).init();
   }
 
   @override

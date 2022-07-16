@@ -43,6 +43,8 @@ dev_dependencies:
   firebase_auth: ^3.0.2
   cloud_firestore: ^2.5.0
   firebase_storage: ^10.2.18
+  firebase_messaging: ^11.4.4
+
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
